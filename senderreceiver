@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+public class Senderreceiver {
+
+    static void sender() {
+        System.out.println("Sender: Hi");
+    }
+
+    static void receiver() {
+        System.out.println("Receiver: Hello");
+        System.out.println("Receiver: What do you want?");
+    }
+
+    static void operations(char op, int a, int b) {
+
+        switch (op) {
+            case '+':
+                System.out.println("Result = " + (a + b));
+                break;
+
+            case '-':
+                System.out.println("Result = " + (a - b));
+                break;
+
+            case '*':
+                System.out.println("Result = " + (a * b));
+                break;
+
+            case '/':
+                if (b != 0)
+                    System.out.println("Result = " + (a / b));
+                else
+                    System.out.println("Cannot divide by zero");
+                break;
+
+            default:
+                System.out.println("Receiver: Byee");
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        sender();
+        receiver();
+
+        String choice;
+
+        do {
+
+            System.out.print("Enter operation (+, -, *, /): ");
+            char op = sc.next().charAt(0);
+
+            if (op == '+' || op == '-' || op == '*' || op == '/') {
+
+                System.out.print("Enter a: ");
+                int a = sc.nextInt();
+
+                System.out.print("Enter b: ");
+                int b = sc.nextInt();
+
+                operations(op, a, b);
+
+            } else {
+                operations(op, 0, 0);
+            }
+
+            System.out.print("Do you want to continue? (yes/no): ");
+            choice = sc.next();
+
+        } while (choice.equalsIgnoreCase("yes"));
+
+        System.out.println("BYE");
+
+        sc.close();
+    }
+}
